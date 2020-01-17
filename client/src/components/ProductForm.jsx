@@ -19,7 +19,7 @@ export default props => { //rather change this to Product or productForm
 
     return(
         <div>
-            <h1>Product Manager</h1>
+            <h3>Product Manager</h3>
             <form onSubmit={onSubmitHandler}>
                 <p>
                     <label>Title</label>

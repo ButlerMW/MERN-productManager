@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductForm from '../components/ProductForm';
 import ProductList from '../components/ProductList';
+
 export default () => {
     const [product, setProduct] = useState([]);
 
@@ -9,11 +10,16 @@ export default () => {
         axios.get('http://localhost:8000/api/product')
             .then(res => setProduct(res.data))
             .catch(err => console.log("!!!5!!Error: ", err))
-    }, [])
+    }, [product])
+
+    const removeFromDom = productId => {
+        setProduct(product.filter(product => product._id !== productId))
+    }
+
     return (
         <>
             <ProductForm />
-            <ProductList product={product} />
+            <ProductList product={product} removeFromDom={removeFromDom} />
         </>
     )
 }
